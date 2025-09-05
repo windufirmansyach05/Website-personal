@@ -1,0 +1,670 @@
+/* -------------------
+   RESET & BASE
+------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  background: #f9f9f9;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+section {
+  padding: 80px 10%;
+}
+
+/* -------------------
+   NAVBAR
+------------------- */
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: #0d1117;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10%;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+#nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  background: #ffffffff;
+  padding: 5px 10px;
+  border-radius: 25px;
+}
+
+#nav-links li a {
+  font-weight: 500;
+  color: #000000ff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+#nav-links li a:hover,
+#nav-links li a.active {
+  background: #30363d;
+  color: #fff;
+}
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    background: #161b22;
+    position: absolute;
+    top: 60px;
+    right: 10%;
+    padding: 15px;
+    width: 200px;
+  }
+
+  #nav-links.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* -------------------
+   HERO SECTION
+------------------- */
+
+/* ===== Bubble Animasi dengan Skill ===== */
+.background-animation {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 0; /* di belakang card */
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px; /* mulai dari bawah layar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  animation: moveUp linear infinite;
+  opacity: 0.85;
+}
+
+/* Warna kategori */
+.bubble.cloud    { background: rgba(59, 130, 246, 0.7); }   /* Biru */
+.bubble.devops   { background: rgba(34, 197, 94, 0.7); }    /* Hijau */
+.bubble.programming { background: rgba(249, 115, 22, 0.7); }/* Oranye */
+.bubble.database { background: rgba(239, 68, 68, 0.7); }    /* Merah */
+.bubble.tools    { background: rgba(139, 92, 246, 0.7); }   /* Ungu */
+
+/* Animasi bubble naik */
+@keyframes moveUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(0.7); /* naik sampai keluar layar */
+    opacity: 0;
+  }
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #000000ff, #000000ff);
+  perspective: 1200px; /* Efek 3D */
+}
+
+.hero-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+}
+
+.hero-card {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-card:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.hero-card:hover .profile-img {
+  transform: scale(1.05) rotateZ(3deg);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.hero h1 span {
+  color: #ffdd57;
+}
+
+.roles {
+  font-size: 1.2rem;
+  color: #e5e7eb;
+}
+
+.role {
+  display: inline-block;
+  animation: fadeRole 6s infinite;
+}
+
+@keyframes fadeRole {
+  0%, 20% { opacity: 1; }
+  30%, 90% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.hero-buttons {
+  margin-top: 25px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 5px;
+  background: #ffdd57;
+  color: #111;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.btn:hover {
+  background: #facc15;
+  transform: translateY(-3px);
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background: white;
+  color: #111;
+}
+
+.scroll-down {
+  margin-top: 40px;
+}
+
+.scroll-down a {
+  color: #ffdd57;
+  font-size: 28px;
+  display: inline-block;
+  animation: bounce 1.5s infinite;
+  transition: color 0.3s ease;
+}
+
+.scroll-down a:hover {
+  color: white;
+}
+
+/* Animasi bounce */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(8px);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+}
+
+/* -------------------
+   ABOUT
+------------------- */
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.about-img {
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  margin-bottom: 15px;
+  color: #000000ff;
+}
+
+/* -------------------
+   SKILLS
+------------------- */
+.skills {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.skills-marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.marquee-group {
+  display: flex;
+  gap: 30px;
+  animation: marquee 25s linear infinite;
+}
+
+.skills-marquee.reverse .marquee-group {
+  animation: marquee-reverse 25s linear infinite;
+}
+
+.skill-card {
+  flex: 0 0 auto;
+  min-width: 120px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  font-weight: 600;
+  background: #f9fafb;
+}
+
+/* Warna per kategori */
+.skill-card.cloud { background: #e0f2fe; }
+.skill-card.devops { background: #dcfce7; }
+.skill-card.programming { background: #fef3c7; }
+.skill-card.database { background: #fee2e2; }
+.skill-card.tools { background: #ede9fe; }
+
+/* Animasi loop tanpa berhenti */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee-reverse {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+/* -------------------
+   PROJECTS
+------------------- */
+.projects {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.projects h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
+  justify-items: center;
+  align-items: stretch;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  max-width: 500px;
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.project-content h3 {
+  margin-bottom: 10px;
+  color: #4f46e5;
+}
+
+.project-content p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.project-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.project-buttons .btn {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.project-buttons .btn.code {
+  background: #4f46e5;
+  color: white;
+}
+
+.project-buttons .btn.code:hover {
+  background: #4338ca;
+}
+
+.project-buttons .btn.live {
+  background: #ffdd57;
+  color: #111;
+}
+
+.project-buttons .btn.live:hover {
+  background: #facc15;
+}
+
+/* Posisi Project 3 agar di tengah bawah */
+.project-card.center {
+  grid-column: 1 / -1; /* ambil full row */
+  max-width: 600px;
+}
+
+/* -------------------
+   CONTACT
+------------------- */
+.contact {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f9fafb;
+}
+
+.contact h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.contact p {
+  color: #555;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.contact-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Reusable card */
+.card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  padding: 25px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Info kontak */
+.contact-info {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.info-item .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.info-item a {
+  color: #333;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.info-item a:hover {
+  color: #4f46e5;
+}
+
+/* Form */
+.contact-form {
+  flex: 1;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #4f46e5;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(79, 70, 229, 0.3);
+}
+
+.contact-form button {
+  background: #facc15;
+  border: none;
+  padding: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #eab308;
+  transform: translateY(-2px);
+}
+
+.contact-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1000px;   /* Batas lebar maksimal */
+  margin: 0 auto;      /* Supaya center */
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;    /* Batasi ukuran card */
+}
+
+/* -------------------
+   FOOTER
+------------------- */
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 20px 10%;
+}
+
+footer .socials {
+  margin-top: 10px;
+}
+
+footer .socials a {
+  margin: 0 10px;
+  color: #fff;
+  font-size: 1.3rem;
+  transition: 0.3s;
+}
+
+footer .socials a:hover {
+  color: #ffdd57;
+}
+
+/* -------------------
+   ANIMATIONS
+------------------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -------------------
+   RESPONSIVE
+------------------- */
+@media (max-width: 768px) {
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 60px;
+    right: 10%;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 15px;
+  }
+
+  #nav-links.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-img {
+    width: 100%;
+    max-width: 350px;
+  }
+}
