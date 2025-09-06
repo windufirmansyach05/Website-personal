@@ -323,11 +323,11 @@ header {
 .marquee-group {
   display: flex;
   gap: 30px;
-  animation: marquee 25s linear infinite;
+  animation: marquee 35s linear infinite;
 }
 
 .skills-marquee.reverse .marquee-group {
-  animation: marquee-reverse 25s linear infinite;
+  animation: marquee-reverse 35s linear infinite;
 }
 
 .skill-card {
